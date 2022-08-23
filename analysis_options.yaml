@@ -24,6 +24,20 @@ linter:
   rules:
     # avoid_print: false  # Uncomment to disable the `avoid_print` rule
     # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
+    # Style rules
+    - avoid_catches_without_on_clauses
+    - avoid_catching_errors
+    - avoid_empty_else
+    - avoid_redundant_argument_values
+    - camel_case_types
+    - leading_newlines_in_multiline_strings
+    - library_names
+    - unnecessary_brace_in_string_interps
+    # formatting
+    - curly_braces_in_flow_control_structures
+    - lines_longer_than_80_chars
+    # doc comments
+    - slash_for_doc_comments
 
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
