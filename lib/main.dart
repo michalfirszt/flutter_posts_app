@@ -4,24 +4,39 @@ void main() {
   runApp(const App());
 }
 
-class App extends StatelessWidget {
+class App extends StatefulWidget {
   const App({Key? key}) : super(key: key);
 
   static String appBarTitle = 'Posts app';
   static List<Widget> posts = [const Text('Post1'), const Text('Post2')];
 
+  @override
+  State<App> createState() => AppState();
+}
+
+class AppState extends State<App> {
+  int postIndex = 0;
+
   void buttonAction(int actionNumber) {
+    int newPostIndex = postIndex + 1;
+
+    if (newPostIndex < App.posts.length) {
+      setState(() {
+        postIndex = newPostIndex;
+      });
+    }
+
     // ignore: avoid_print
-    print('action $actionNumber');
+    print(postIndex);
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: Text(appBarTitle)),
+        appBar: AppBar(title: Text(App.appBarTitle)),
         body: Column(children: [
-          ...posts,
+          App.posts[postIndex],
           ElevatedButton(
             onPressed: () => buttonAction(1),
             child: const Text('Action1'),
