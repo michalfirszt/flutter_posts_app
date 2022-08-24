@@ -6,14 +6,19 @@ void main() {
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
-  static String appBarTitle = 'Posts app';
 
   @override
   Widget build(BuildContext context) {
+    String appBarTitle = 'Posts app';
+    List<Widget> posts = [const Text('Post1'), const Text('Post2')];
+
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(title: Text(appBarTitle)),
-        body: const Text('posts'),
+        body: Column(children: [
+          ...posts,
+          const ElevatedButton(onPressed: null, child: Text('Action1'))
+        ]),
       ),
     );
   }
