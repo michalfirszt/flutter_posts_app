@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import './widgets/post_item.dart';
+
 void main() {
   runApp(const App());
 }
@@ -8,26 +10,26 @@ class App extends StatefulWidget {
   const App({Key? key}) : super(key: key);
 
   static String appBarTitle = 'Posts app';
-  static List<Widget> posts = [const Text('Post1'), const Text('Post2')];
+  static List<String> posts = ['Post1', 'Post2'];
 
   @override
-  State<App> createState() => AppState();
+  State<App> createState() => _AppState();
 }
 
-class AppState extends State<App> {
-  int postIndex = 0;
+class _AppState extends State<App> {
+  int _postIndex = 0;
 
-  void buttonAction(int actionNumber) {
-    int newPostIndex = postIndex + 1;
+  void _buttonAction(int actionNumber) {
+    int newPostIndex = _postIndex + 1;
 
     if (newPostIndex < App.posts.length) {
       setState(() {
-        postIndex = newPostIndex;
+        _postIndex = newPostIndex;
       });
     }
 
     // ignore: avoid_print
-    print(postIndex);
+    print(_postIndex);
   }
 
   @override
@@ -36,17 +38,19 @@ class AppState extends State<App> {
       home: Scaffold(
         appBar: AppBar(title: Text(App.appBarTitle)),
         body: Column(children: [
-          App.posts[postIndex],
+          PostItem(
+            postTitle: App.posts[_postIndex],
+          ),
           ElevatedButton(
-            onPressed: () => buttonAction(1),
+            onPressed: () => _buttonAction(1),
             child: const Text('Action1'),
           ),
           ElevatedButton(
-            onPressed: () => buttonAction(2),
+            onPressed: () => _buttonAction(2),
             child: const Text('Action2'),
           ),
           ElevatedButton(
-            onPressed: () => buttonAction(3),
+            onPressed: () => _buttonAction(3),
             child: const Text('Action3'),
           ),
         ]),
