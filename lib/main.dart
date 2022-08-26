@@ -39,7 +39,7 @@ class _AppState extends State<App> {
         appBar: AppBar(title: Text(App.appBarTitle)),
         body: Column(children: [
           PostItem(
-            postTitle: App.posts[_postIndex],
+            title: App.posts[_postIndex],
           ),
           ElevatedButton(
             onPressed: () => _buttonAction(1),
