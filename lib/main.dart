@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import './widgets/post_action_button.dart';
 import './widgets/post_item.dart';
 
 void main() {
@@ -41,17 +42,17 @@ class _AppState extends State<App> {
           PostItem(
             title: App.posts[_postIndex],
           ),
-          ElevatedButton(
+          PostActionButton(
             onPressed: () => _buttonAction(1),
-            child: const Text('Action1'),
+            title: const Text('Action1'),
           ),
-          ElevatedButton(
+          PostActionButton(
             onPressed: () => _buttonAction(2),
-            child: const Text('Action2'),
+            title: const Text('Action2'),
           ),
-          ElevatedButton(
+          PostActionButton(
             onPressed: () => _buttonAction(3),
-            child: const Text('Action3'),
+            title: const Text('Action3'),
           ),
         ]),
       ),
