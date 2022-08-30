@@ -19,6 +19,16 @@ class App extends StatefulWidget {
 
 class _AppState extends State<App> {
   int _postIndex = 0;
+  List<Map<String, Object>> postActions = [
+    {
+      'post': 'Post1',
+      'actions': ['action1', 'actions2']
+    },
+    {
+      'post': 'Post2',
+      'actions': ['action1', 'actions2']
+    },
+  ];
 
   void _buttonAction(int actionNumber) {
     int newPostIndex = _postIndex + 1;
