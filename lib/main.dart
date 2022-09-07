@@ -34,10 +34,13 @@ class _AppState extends State<App> {
   void _buttonAction(int actionNumber) {
     int newPostIndex = _postIndex + 1;
 
+    setState(() {
+      _postIndex = newPostIndex;
+    });
+
     if (newPostIndex < App.posts.length) {
-      setState(() {
-        _postIndex = newPostIndex;
-      });
+      // ignore: avoid_print
+      print('post is available');
     }
 
     // ignore: avoid_print
@@ -49,17 +52,23 @@ class _AppState extends State<App> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(title: Text(App.appBarTitle)),
-        body: Column(children: [
-          PostItem(
-            title: App.posts[_postIndex],
-          ),
-          ...postActions.map((element) => Text(element['post'] as String)),
-          ...(postActions[_postIndex]['actions'] as List<String>)
-              .mapIndexed((index, action) {
-            return PostActionButton(
-                title: Text(action), onPressed: () => _buttonAction(index));
-          })
-        ]),
+        body: _postIndex < App.posts.length
+            ? Column(children: [
+                PostItem(
+                  title: App.posts[_postIndex],
+                ),
+                ...postActions
+                    .map((element) => Text(element['post'] as String)),
+                ...(postActions[_postIndex]['actions'] as List<String>)
+                    .mapIndexed((index, action) {
+                  return PostActionButton(
+                      title: Text(action),
+                      onPressed: () => _buttonAction(index));
+                })
+              ])
+            : const Center(
+                child: Text('All actions'),
+              ),
       ),
     );
   }
