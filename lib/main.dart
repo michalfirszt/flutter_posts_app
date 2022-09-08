@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:collection/collection.dart';
 
-import './widgets/post_action_button.dart';
-import './widgets/post_item.dart';
+import './widgets/post_actions.dart';
 
 void main() {
   runApp(const App());
@@ -53,19 +51,12 @@ class _AppState extends State<App> {
       home: Scaffold(
         appBar: AppBar(title: Text(App.appBarTitle)),
         body: _postIndex < App.posts.length
-            ? Column(children: [
-                PostItem(
-                  title: App.posts[_postIndex],
-                ),
-                ...postActions
-                    .map((element) => Text(element['post'] as String)),
-                ...(postActions[_postIndex]['actions'] as List<String>)
-                    .mapIndexed((index, action) {
-                  return PostActionButton(
-                      title: Text(action),
-                      onPressed: () => _buttonAction(index));
-                })
-              ])
+            ? PostActions(
+                postIndex: _postIndex,
+                buttonAction: _buttonAction,
+                posts: App.posts,
+                postActions: postActions,
+              )
             : const Center(
                 child: Text('All actions'),
               ),
